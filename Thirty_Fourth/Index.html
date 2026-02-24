@@ -1,0 +1,407 @@
+<html>
+
+<head>
+
+<title>For My Bebi</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(#ffd6e7,#fff);
+text-align:center;
+overflow-x:hidden;
+}
+
+/* Floating hearts */
+
+.heart{
+position:fixed;
+color:red;
+font-size:20px;
+animation:float 6s infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh);opacity:1;}
+100%{transform:translateY(-10vh);opacity:0;}
+}
+
+/* Flower */
+
+.flower{
+font-size:120px;
+cursor:pointer;
+margin-top:100px;
+transition:1s;
+}
+
+.flower:hover{
+transform:scale(1.2);
+}
+
+/* Hidden */
+
+.hidden{
+display:none;
+}
+
+/* Envelope */
+
+.envelope{
+
+font-size:120px;
+cursor:pointer;
+margin-top:100px;
+transition:1s;
+}
+
+.envelope:hover{
+transform:scale(1.2);
+}
+
+/* Letter */
+
+.letter{
+
+font-size:28px;
+color:#d6006e;
+margin-top:20px;
+
+}
+
+/* Video = Center */
+
+video{
+display:none;
+margin:20px auto;
+width:90%;
+max-width:450px;
+border-radius:20px;
+}
+
+
+/* Buttons */
+
+button{
+
+padding:12px 25px;
+font-size:18px;
+border:none;
+border-radius:25px;
+margin:10px;
+cursor:pointer;
+
+}
+
+.heartButton{
+
+background:#ff4da6;
+color:white;
+
+}
+
+.play{
+
+background:#ff4da6;
+color:white;
+
+}
+
+/* Timeline */
+
+.timeline{
+
+margin-top:20px;
+font-size:18px;
+
+}
+
+/* Video */
+
+video{
+
+margin-top:20px;
+width:90%;
+max-width:450px;
+border-radius:20px;
+display:none;
+
+}
+
+/* Final Message */
+
+.final{
+
+font-size:26px;
+color:#cc0066;
+margin-top:20px;
+display:none;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<script>
+
+/* Floating hearts */
+
+for(let i=0;i<25;i++){
+
+let h=document.createElement("div");
+
+h.className="heart";
+
+h.innerHTML="❤";
+
+h.style.left=Math.random()*100+"%";
+
+h.style.animationDelay=Math.random()*5+"s";
+
+document.body.appendChild(h);
+
+}
+
+</script>
+
+
+<!-- Flower -->
+
+<div id="flower" class="flower">
+
+🌸
+
+<br>
+
+Tap The Flower Bebi 😘
+
+</div>
+
+
+<!-- Envelope -->
+
+<div id="envelope" class="hidden envelope">
+
+💌
+
+<br>
+
+Open Me 🤭
+
+</div>
+
+
+<!-- Letter -->
+<div id="letter" class="hidden letter">
+
+</div>
+
+
+<!-- Open Heart Button -->
+
+<button id="heartBtn" class="hidden heartButton" onclick="openHeart()">
+
+Tap to see 🫰
+
+</button>
+
+
+<!-- Timeline -->
+
+<div id="timeline" class="hidden timeline">
+
+💕 Happy 34th monthsary, my love every day with you feels special 💕
+
+<br>
+<br>
+<h1>I LOVE YOU BEBI</h1>
+<br>
+
+💕 Thank you for staying by my side through all these beautiful months. 💕
+
+<br>
+
+💕 Our 34 months together mean more to me than words can say. 💕
+
+<br>
+
+💕 I can't wait to make more memories with you in the future. 💕
+
+</div>
+
+
+<!-- Video -->
+
+<button id="playBtn" class="hidden play" onclick="playVideo()">
+
+▶ Play Our Story
+
+</button>
+
+
+<br>
+
+<video id="video" controls>
+
+<source src="video.mp4" type="video/mp4">
+
+</video>
+
+
+<!-- Final Message -->
+
+<div id="final" class="final">
+
+I love you so much Bebi 😘💕
+
+<br><br>
+
+Happy 34th Monthsarry Bebi 💕
+
+</div>
+
+
+<!-- Music -->
+
+<audio id="music" loop>
+
+<source src="music.mp3" type="audio/mp3">
+
+</audio>
+
+
+<script>
+
+
+/* Step 1 Flower */
+
+flower.onclick = function() {
+
+flower.style.display="none";
+envelope.style.display="block";
+
+let audio = document.getElementById("music");
+audio.volume = 0;
+audio.play();
+
+let fade = setInterval(function(){
+
+if(audio.volume < 1){
+
+audio.volume += 0.05;
+
+}else{
+
+clearInterval(fade);
+
+}
+
+},200);
+
+}
+
+
+/* Step 2 Envelope */
+
+envelope.onclick=function(){
+
+envelope.style.display="none";
+
+letter.style.display="block";
+
+heartBtn.style.display="inline-block";
+
+typeText();
+
+}
+
+
+/* Typing */
+
+let message="Happy 34th Monthsarry Bebi 💕";
+
+let i=0;
+
+function typeText(){
+
+if(i<message.length){
+
+letter.innerHTML+=message.charAt(i);
+
+i++;
+
+setTimeout(typeText,80);
+
+}
+
+}
+
+
+/* Step 3 Heart */
+
+function openHeart(){
+
+timeline.style.display="block";
+
+playBtn.style.display="inline-block";
+
+}
+
+
+/* Step 4 Video */
+
+function playVideo(){
+
+video.style.display="block";
+
+let audio=document.getElementById("music");
+
+/* Fade out music */
+
+let fade=setInterval(function(){
+
+if(audio.volume>0.1){
+
+audio.volume-=0.1;
+
+}else{
+
+clearInterval(fade);
+audio.pause();
+audio.volume=1;
+
+video.play();
+
+}
+
+},200);
+
+}
+
+
+/* After video */
+
+video.onended=function(){
+
+final.style.display="block";
+
+/* Resume music after video */
+let audio = document.getElementById("music");
+audio.play();
+
+}
+
+
+</script>
+
+</body>
+
+</html>
